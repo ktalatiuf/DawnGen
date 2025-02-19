@@ -27,7 +27,6 @@ def get_link(toaddress):
     email_ids = messages[0].split()
 
     if not email_ids:
-        print("No unread emails found with subject: Email Verification")
         return 1
     else:
         latest_email_id = email_ids[-1]
