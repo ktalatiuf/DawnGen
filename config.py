@@ -2,7 +2,7 @@
 capsolver = "CAPSOLVER-API-KEY-HERE"
 #total number of accounts you want to gen
 quantity = 5
-#threads are how many task you want to run at the same time
+#threads are how many task you want to run at the same time (Make sure its a multiple of quantity)
 threads = 3 
 #GMAIL imap email
 imapuser = "xxx@gmail.com"
