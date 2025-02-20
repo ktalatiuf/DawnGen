@@ -1,6 +1,5 @@
 import requests
 import random
-from Tools.scripts.generate_opcode_h import header
 import time
 import urllib.parse
 import imaplib
