@@ -1,5 +1,3 @@
 requests
-imapclient
-email
 urllib3
-concurrent.futures
+imaplib2
