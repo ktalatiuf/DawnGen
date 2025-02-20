@@ -1,6 +1,6 @@
 import requests
 import random
-from config import *
+from Tools.scripts.generate_opcode_h import header
 import time
 import urllib.parse
 import imaplib
@@ -8,7 +8,20 @@ import email
 from email.header import decode_header
 import re
 import concurrent.futures
+import json
+import os
 
+
+def load_json():
+    with open('config.json', 'r') as f:
+        config = json.load(f)
+
+    capsolver = config["capsolver"]
+    quantity = config["quantity"]
+    threads = config["threads"]
+    imapuser = config["imapuser"]
+    imappass = config["imappass"]
+    ref = config["ref"]
 
 
 def get_link(toaddress):
@@ -186,9 +199,9 @@ def get_mail():
         lines = [line.strip() for line in file.readlines()]
     return lines
 
-def add_info(email,password):
+def add_info(email,password,proxy):
     with open('output.txt', 'a') as file:
-        file.write(email+":"+password+"\n")
+        file.write(email+":"+password+":"+proxy+"\n")
 
 
 def format_proxy(proxy_string):
@@ -247,7 +260,7 @@ def send_request(passwrd,token,mail,proxy,appid):
         'mobile': '',
         'country': 'GB',
         'password': passwrd,
-        'referralCode': '',
+        'referralCode': ref,
         'token': tok,
         'isMarketing': False,
         'browserName': 'chrome',
@@ -297,7 +310,7 @@ def process_account(j):
                 get_task_id("https://verify.dawninternet.com/chromeapi/dawn/v1/userverify/verifycheck",
                             "0x4AAAAAAA48wVDquA-98fyV")), fprox):
             print("Genned Successfully!")
-            add_info(email, password)
+            add_info(email, password,prox)
         else:
             print("Verification failed!")
     else:
@@ -313,4 +326,13 @@ def main():
 
 
 if __name__ == '__main__':
+    with open('config.json', 'r') as f:
+        config = json.load(f)
+
+    capsolver = config["capsolver"]
+    quantity = config["quantity"]
+    threads = config["threads"]
+    imapuser = config["imapuser"]
+    imappass = config["imappass"]
     main()
+    input("Press enter to close program")
