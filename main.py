@@ -1,6 +1,5 @@
 import requests
 import random
-from Tools.scripts.generate_opcode_h import header
 from config import *
 import time
 import urllib.parse
